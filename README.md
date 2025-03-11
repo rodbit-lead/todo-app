@@ -6,16 +6,16 @@ _Learning with AI_
 
 1. Backend Task:
 
-- Create a `TodoController` in **backend/src/controllers/TodoController.ts** with methods to handle CRUD operations for todos.
+- Create a `TodoController` in _backend/src/controllers/TodoController.ts_ with methods to handle CRUD operations for todos.
 
-- Create routes in **backend/src/routes/todoRoutes.ts** to handle API requests for todos.
+- Create routes in _backend/src/routes/todoRoutes.ts_ to handle API requests for todos.
 
-- Update **backend/src/server.ts** to use the todo routes.
+- Update _backend/src/server.ts_ to use the todo routes.
 
 2. Frontend Task:
 
-- Create a `TodoService` in **frontend/src/services/TodoService.ts** to interact with the backend API.
+- Create a `TodoService` in _frontend/src/services/TodoService.ts_ to interact with the backend API.
 
-- Create a `TodoList` component in **frontend/src/components/TodoList.tsx** to display the list of todos.
+- Create a `TodoList` component in _frontend/src/components/TodoList.tsx_ to display the list of todos.
 
-- Update **frontend/src/App.tsx** to include the `TodoList` component.
+- Update _frontend/src/App.tsx_ to include the `TodoList` component.
