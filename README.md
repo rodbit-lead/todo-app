@@ -4,7 +4,7 @@ _Learning with AI_
 
 ## First Task
 
-1. Backend Task:
+**1. Backend Task:**
 
 - Create a `TodoController` in _backend/src/controllers/TodoController.ts_ with methods to handle CRUD operations for todos.
 
@@ -12,7 +12,7 @@ _Learning with AI_
 
 - Update _backend/src/server.ts_ to use the todo routes.
 
-2. Frontend Task:
+**2. Frontend Task:**
 
 - Create a `TodoService` in _frontend/src/services/TodoService.ts_ to interact with the backend API.
 

@@ -1,21 +1,22 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import connectDB from '../utils/db';
-
-dotenv.config();
+import connectDB from './utils/db';
+import todoRoutes from './routes/todoRoutes';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+dotenv.config();
 
+// MIDDLEWARE
 app.use(cors());
 app.use(express.json());
+
+// ROUTES
+app.use('/api', todoRoutes)
+
+// CONNECT TO DB
 connectDB();
 
-app.get('/', (req, res) => {
-  res.send('Hello from Todo App Backend!');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// START SERVER
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
