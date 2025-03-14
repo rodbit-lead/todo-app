@@ -19,3 +19,11 @@ _Learning with AI_
 - Create a `TodoList` component in _frontend/src/components/TodoList.tsx_ to display the list of todos.
 
 - Update _frontend/src/App.tsx_ to include the `TodoList` component.
+
+## Second Task
+
+1. Fetches and displays a list of `todos` from the `backend`.
+
+2. Allows users to create a new `todo`.
+
+3. Allows users to update and delete `todos`.
