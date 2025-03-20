@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Modal, Button, Card, Badge, Title, Group, TextInput, Container, Checkbox, Flex, Stack } from "@mantine/core"
+import { Modal, Button, Card, Badge, Title, Group, TextInput, Container, Checkbox, Stack } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks";
 
 interface TodoItemProps {
@@ -19,7 +19,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onDelete, onUpdate }) => {
   const [editedTitle, setEditedTitle] = useState(todo.title)
   const [editedDescription, setEditedDescription] = useState(todo.description)
   const [editedCompleted, setEditedCompleted] = useState(todo.completed)
-  const [opened, { open, close }] = useDisclosure(true);
+  const [opened] = useDisclosure(true);
 
   const handleSave = () => {
     onUpdate(todo._id, {
@@ -33,7 +33,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onDelete, onUpdate }) => {
   return (
     <Container>
       {isEditing ? (
-        <Modal opened={opened} onClose={close} title="Edit Todo" >
+        <Modal opened={opened} onClose={() => setIsEditing(false)} withCloseButton={false} title="Edit Todo" >
           <Stack>
             <TextInput
               value={editedTitle}
@@ -46,6 +46,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onDelete, onUpdate }) => {
               placeholder="Description"
             />
             <Checkbox
+              label="Check if it's Completed"
               checked={editedCompleted}
               onChange={(e) => setEditedCompleted(e.target.checked)}
               placeholder="Completed"

@@ -11,14 +11,22 @@ const TodoList: React.FC = () => {
   }, []);
 
   const fetchTodos = async () => {
-    const data = await getTodos();
-    setTodos(data)
+    try {
+      const data = await getTodos();
+      setTodos(data)
+    } catch (err) {
+      console.error("Error fetching todos: ", err)
+    }
   }
 
   const handleDelete = async (id: string) => {
-    await deleteTodo(id);
-    fetchTodos() // is used to refresh the list after delition
-  }
+    try {
+      await deleteTodo(id);
+      fetchTodos() // is used to refresh the list after delition
+    } catch (err) {
+      console.error("Error deleting todo: ", err)
+    }
+  };
 
   const handleUpdate = async (id: string, updatedTodo: { title: string, description: string, completed: boolean }) => {
     try {

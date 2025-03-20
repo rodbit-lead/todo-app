@@ -1,34 +1,60 @@
 import React, { useState } from "react"
-import { Button, TextInput, Flex } from "@mantine/core"
+import { Button, TextInput, Flex, Checkbox } from "@mantine/core"
 import { createTodo } from '../services/api';
 
-const TodoForm: React.FC = () => {
+interface TodoFormProps {
+  onTodoCreated: () => void; // Callback to refresh the todo list
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ onTodoCreated }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [completed, setCompleted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await createTodo({ title, description, completed });
-    setTitle('');
-    setDescription('');
-    setCompleted(false);
+    if (!title.trim()) {
+      alert('Title cannot be empty');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await createTodo({ title, description, completed });
+      setTitle('');
+      setDescription('');
+      setCompleted(false);
+      onTodoCreated()
+    } catch (err) {
+      console.error("Error creating todo: ", err)
+    } finally {
+      setIsSubmitting(false)
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <Flex justify='center' align="center" mt='xl' gap='md'>
+      <Flex justify='center' align="flex-end" mt='xl' gap='md'>
         <TextInput
-          placeholder="Title"
+          label="Title"
+          placeholder="Enter a title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
         />
         <TextInput
-          placeholder="Description"
+          label="Description"
+          placeholder="Enter a description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <Button type="submit">Add Todo</Button>
+        <Checkbox
+          label="Completed"
+          checked={completed}
+          onChange={(e) => setCompleted(e.target.checked)}
+        />
+        <Button type="submit" loading={isSubmitting}>Add Todo</Button>
       </Flex>
     </form>
   );

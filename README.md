@@ -27,3 +27,11 @@ _Learning with AI_
 2. Allows users to create a new `todo`.
 
 3. Allows users to update and delete `todos`.
+
+## Third Task
+
+1. Create a form to add new `todos`.
+
+2. Use **Mantine** components for a clean and responsive UI.
+
+3. Ensure the form integrates with the `backend` API.
