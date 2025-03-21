@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Title, Flex, Group } from '@mantine/core';
+import { Title, Flex, Group, Select } from '@mantine/core';
 import { getTodos, deleteTodo, updateTodo } from '../services/api';
 import TodoItem from './TodoItem.tsx';
+import TodoForm from './TodoForm.tsx';
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<any[]>([]);
+  const [filter, setFilter] = useState<'all' | 'completed' | 'not-completed'>('all');
+  const [sortBy, setSortBy] = useState<'createdAt' | 'title'>('createdAt');
 
   useEffect(() => {
     fetchTodos();
@@ -37,11 +40,47 @@ const TodoList: React.FC = () => {
     }
   }
 
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'completed') return todo.completed;
+    if (filter === 'not-completed') return !todo.completed;
+    return true; // all
+  });
+
+  const sortedAndFilteredTodos = filteredTodos.sort((a, b) => {
+    if (sortBy === "title") {
+      return a.title.localeCompare(b.title);
+    } else {
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+    }
+  })
+
   return (
-    <Flex align="center" direction='column'>
-      <Title order={2} my='xl'>Your Todo List</Title>
-      <Group gap='lg'>
-        {todos.map((todo: any) => (
+    <Flex justify="space-between" direction='column' bg="#f1f1f1" py='xl' px={30}>
+      <Group justify='space-between' >
+        <Title order={2}>Your Todo List</Title>
+        <Select
+          label="Filter by"
+          value={filter}
+          onChange={(value) => setFilter(value as 'all' | 'completed' | 'not-completed')}
+          data={[
+            { value: 'all', label: 'All' },
+            { value: 'completed', label: 'Completed' },
+            { value: 'not-completed', label: 'Not Completed' },
+          ]}
+        />
+        <Select
+          label="Sort by"
+          value={sortBy}
+          onChange={(value) => setSortBy(value as 'createdAt' | 'title')}
+          data={[
+            { value: 'createdAt', label: 'Creation Date' },
+            { value: 'title', label: 'Title' },
+          ]}
+        />
+      </Group>
+      <TodoForm onTodoCreated={fetchTodos} />
+      <Group justify='space-between'>
+        {filteredTodos.map((todo: any) => (
           <TodoItem
             key={todo._id}
             todo={todo}

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, TextInput, Flex, Checkbox } from "@mantine/core"
+import { Button, TextInput, Group, Checkbox, Flex } from "@mantine/core"
 import { createTodo } from '../services/api';
 
 interface TodoFormProps {
@@ -35,19 +35,21 @@ const TodoForm: React.FC<TodoFormProps> = ({ onTodoCreated }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Flex justify='center' align="flex-end" mt='xl' gap='md'>
+      <Flex justify='space-between' align='flex-end' py="xl" px={30}>
         <TextInput
           label="Title"
           placeholder="Enter a title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          w={400}
         />
         <TextInput
           label="Description"
           placeholder="Enter a description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          w={600}
         />
         <Checkbox
           label="Completed"
