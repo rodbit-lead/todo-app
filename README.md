@@ -35,3 +35,11 @@ _Learning with AI_
 2. Use **Mantine** components for a clean and responsive UI.
 
 3. Ensure the form integrates with the `backend` API.
+
+## Fourth Task
+
+1. Add a filter to show `todos` based on their completion status **(e.g., "All", "Completed", "Not Completed").**
+
+2. Add sorting to order `todos` by their creation date or title.
+
+3. Use `Mantine` components for the UI **(e.g., Select, RadioGroup).**
