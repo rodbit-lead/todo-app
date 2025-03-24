@@ -79,7 +79,7 @@ const TodoList: React.FC = () => {
         />
       </Group>
       <TodoForm onTodoCreated={fetchTodos} />
-      <Group justify='space-between'>
+      <Flex justify="space-between">
         {filteredTodos.map((todo: any) => (
           <TodoItem
             key={todo._id}
@@ -88,7 +88,7 @@ const TodoList: React.FC = () => {
             onUpdate={handleUpdate}
           />
         ))}
-      </Group>
+      </Flex>
     </Flex>
   )
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Modal, Button, Card, Badge, Title, Group, TextInput, Container, Checkbox, Stack } from "@mantine/core"
+import { Modal, Button, Card, Badge, Title, Group, TextInput, Checkbox, Stack, } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks";
 
 interface TodoItemProps {
@@ -31,7 +31,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onDelete, onUpdate }) => {
   }
 
   return (
-    <Container>
+    <Group>
       {isEditing ? (
         <Modal opened={opened} onClose={() => setIsEditing(false)} withCloseButton={false} title="Edit Todo" >
           <Stack>
@@ -70,7 +70,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onDelete, onUpdate }) => {
           </Group>
         </Card>
       )}
-    </Container>
+    </Group>
   )
 }
 
