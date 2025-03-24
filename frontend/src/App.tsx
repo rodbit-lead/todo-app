@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, MantineProvider, Center, Title, Container } from '@mantine/core';
+import { Flex, MantineProvider, Center, Title } from '@mantine/core';
 import TodoList from './components/TodoList';
 import '@mantine/core/styles.css'
 import TodoForm from './components/TodoForm';
@@ -13,7 +13,6 @@ const App: React.FC = () => {
             Todoer
           </Title>
         </Flex>
-        <TodoForm />
         <TodoList />
 
         <Center ta='center' fw='bold' h={100}>

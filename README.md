@@ -38,8 +38,8 @@ _Learning with AI_
 
 ## Fourth Task
 
-1. Add a filter to show `todos` based on their completion status **(e.g., "All", "Completed", "Not Completed").**
+1. Add a filter to show `todos` based on their completion status _(e.g., "All", "Completed", "Not Completed")._
 
 2. Add sorting to order `todos` by their creation date or title.
 
-3. Use `Mantine` components for the UI **(e.g., Select, RadioGroup).**
+3. Use `Mantine` components for the UI _(e.g., Select, RadioGroup)._
