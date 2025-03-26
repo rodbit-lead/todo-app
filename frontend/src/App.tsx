@@ -2,7 +2,6 @@ import React from 'react';
 import { Flex, MantineProvider, Center, Title } from '@mantine/core';
 import TodoList from './components/TodoList';
 import '@mantine/core/styles.css'
-import TodoForm from './components/TodoForm';
 
 const App: React.FC = () => {
   return (
