@@ -43,3 +43,11 @@ _Learning with AI_
 2. Add sorting to order `todos` by their creation date or title.
 
 3. Use `Mantine` components for the UI _(e.g., Select, RadioGroup)._
+
+## Fifth Task
+
+1. **Pagination:** Split the `todo` list into manageable pages _(e.g., 5 todos per page)._
+
+2. **Search:** Allow users to search `todos` by title or description.
+
+3. **Combine with Filters/Sorting:** Ensure all features work together seamlessly.

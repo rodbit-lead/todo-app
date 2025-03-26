@@ -3,9 +3,31 @@ import Todo from '../models/Todo';
 
 // Get all todos
 const getTodos = async (req: Request, res: Response) => {
+  const { page = 1, limit = 5, search = '' } = req.query;
   try {
-    const todos = await Todo.find()
-    res.status(200).json(todos)
+    let query: any = {
+      $or: [
+        { title: { $regex: search as string, $options: 'i' } },
+        { description: { $regex: search as string, $options: 'i' } },
+      ],
+    };
+
+    if (req.query.filter === 'completed') query.completed = true;
+    if (req.query.filter === 'not-completed') query.completed = false;
+
+    const sortOptions: any = {};
+    if (req.query.sortBy === 'title') sortOptions.title = 1;
+    if (req.query.sortBy === 'createdAt') sortOptions.createdAt = -1;
+
+    const todos = await Todo.find(query).sort(sortOptions).limit(Number(limit)).skip((Number(page) - 1) * Number(limit));
+
+    const total = await Todo.countDocuments(query);
+
+    res.status(200).json({
+      todos,
+      totalPages: Math.ceil(total / Number(limit)),
+      currentPage: Number(page),
+    });
   } catch (err: any) {
     res.status(500).json({ message: err.message })
   }
